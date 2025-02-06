@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hulsi Soni - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            line-height: 1.6;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-size: 1.5rem;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 1rem auto;
+            border: 3px solid white;
+        }
+
+        .info {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .info h2 {
+            margin-bottom: 1rem;
+        }
+
+        .info p, .info div {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background: #2575fc;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.2rem;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .info {
+                padding: 1.5rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                padding: 0.8rem;
+            }
+
+            .contact-form button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-end; /* Align items to the right */
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                margin-top: 10px;
+                align-items: flex-end;  /* Align links to the right */
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                margin: 0.5rem 0;
+                padding: 0.5rem 1rem; /* Add some left padding for visual balance */
+                text-align: right;  /* Align text to the right */
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 1.5rem;
+                padding: 0.5rem;
+                color: white;
+                margin-right: 1rem; /* Add some space to the right of the hamburger */
+                align-self: flex-end; /* Align hamburger to the right */
+            }
+
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                background-color: white;
+                transition: all 0.3s ease-in-out;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div><strong>Hulsi Soni</strong></div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact Me</a>
+        </div>
+    </nav>
+
+
+    <header id="home">
+        <h1>Welcome to My Portfolio</h1>
+        <p>HR & Business Analyst | Data-Driven Decision Maker</p>
+        <img src="profile.png" alt="Profile Photo" class="profile-photo">
+    </header>
+
+    <section id="about">
+        <div class="info">
+            <h2>About Me</h2>
+            <p>Enthusiastic and detail-oriented MBA graduate specializing in Human Resource Management and Business Analytics. Strong foundation in HR practices, data analysis, and problem-solving, supported by academic projects. Skilled in recruitment, HR policies, and data-driven decision-making. Eager to apply analytical and interpersonal skills to contribute to HR and business operations in a dynamic organization.</p>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="info">
+            <h2>Education</h2>
+            <div class="highlight"><strong>MBA in HR and Business Analytics</strong><br>Acharya Bangalore B-School, Bangalore (2023 - 2025)</div>
+            <div class="highlight"><strong>Bachelor of Commerce (B.Com)</strong><br>Bilaspur University (2021 - 2023)</div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="info">
+            <h2>Skills</h2>
+            <div class="highlight">Communication</div>
+            <div class="highlight">Teamwork</div>
+            <div class="highlight">Adaptability</div>
+            <div class="highlight">Leadership</div>
+            <div class="highlight">Organizational Skills</div>
+            <div class="highlight">Ability to Follow Instructions</div>
+
+            <h3>Languages</h3>
+            <p>English, Hindi</p>
+
+            <h3>Certifications & Achievements</h3>
+            <div class="highlight">KSCST Certificate (2023) - Association with Indian Patent Office, Chennai (ABBS Campus)</div>
+            <div class="highlight">Scrum Master Certificate (2024) - ABBS Campus</div>
+            <div class="highlight">National Conference Certificate (2024) - "Recent Trends in the Indian Capital Markets"</div>
+            <div class="highlight">Power BI Certificate (2024) - ABBS Campus</div>
+
+            <h3>Strengths</h3>
+            <div class="highlight">Continuous Learning</div>
+            <div class="highlight">Completing Tasks on Time</div>
+
+            <h3>Hobbies & Interests</h3>
+            <p>Travelling, Dancing, Playing Games</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="info">
+            <h2>Contact Me</h2>
+            <div class="contact-form">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                <button onclick="sendEmail()">Send Message</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Hulsi Soni | All Rights Reserved</p>
+    </footer>
+
+    <script>
+         function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+        function sendEmail() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const mailtoLink = `mailto:hulsisoni426@gmail.com?subject=Message from ${name}&body=Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+            window.location.href = mailtoLink;
+        }
+    </script>
+</body>
+
+</html>
